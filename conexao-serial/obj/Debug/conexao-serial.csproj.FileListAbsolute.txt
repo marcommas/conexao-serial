@@ -1,0 +1,1 @@
+C:\Users\Marco\Documents\Visual Studio 2012\Projects\conexao-serial\ConexaoSerial\conexao-serial\bin\Debug\conexao-serial.exe.config
