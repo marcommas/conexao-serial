@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frPrincipal));
             this.lPortaCom = new System.Windows.Forms.Label();
             this.cbPortaCom = new System.Windows.Forms.ComboBox();
             this.btAbrirPorta = new System.Windows.Forms.Button();
@@ -38,6 +39,10 @@
             this.btEnviarDados = new System.Windows.Forms.Button();
             this.lDadosRecebidos = new System.Windows.Forms.Label();
             this.tbDadosRecebidos = new System.Windows.Forms.TextBox();
+            this.btLiberarEntrada = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btLiberarSaida = new System.Windows.Forms.Button();
+            this.btQtdEntradas = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lPortaCom
@@ -87,6 +92,7 @@
             this.lDadosEnviar.Size = new System.Drawing.Size(119, 20);
             this.lDadosEnviar.TabIndex = 3;
             this.lDadosEnviar.Text = "Dados a enviar:";
+            this.lDadosEnviar.Visible = false;
             // 
             // tbEnviaDados
             // 
@@ -96,6 +102,7 @@
             this.tbEnviaDados.Name = "tbEnviaDados";
             this.tbEnviaDados.Size = new System.Drawing.Size(398, 26);
             this.tbEnviaDados.TabIndex = 4;
+            this.tbEnviaDados.Visible = false;
             // 
             // btEnviarDados
             // 
@@ -108,13 +115,14 @@
             this.btEnviarDados.TabIndex = 5;
             this.btEnviarDados.Text = "Enviar";
             this.btEnviarDados.UseVisualStyleBackColor = true;
+            this.btEnviarDados.Visible = false;
             this.btEnviarDados.Click += new System.EventHandler(this.btEnviarDados_Click);
             // 
             // lDadosRecebidos
             // 
             this.lDadosRecebidos.AutoSize = true;
             this.lDadosRecebidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lDadosRecebidos.Location = new System.Drawing.Point(47, 233);
+            this.lDadosRecebidos.Location = new System.Drawing.Point(63, 430);
             this.lDadosRecebidos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lDadosRecebidos.Name = "lDadosRecebidos";
             this.lDadosRecebidos.Size = new System.Drawing.Size(133, 20);
@@ -123,19 +131,67 @@
             // 
             // tbDadosRecebidos
             // 
-            this.tbDadosRecebidos.Enabled = false;
-            this.tbDadosRecebidos.Location = new System.Drawing.Point(188, 233);
+            this.tbDadosRecebidos.Location = new System.Drawing.Point(204, 386);
             this.tbDadosRecebidos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbDadosRecebidos.Multiline = true;
             this.tbDadosRecebidos.Name = "tbDadosRecebidos";
-            this.tbDadosRecebidos.Size = new System.Drawing.Size(398, 26);
+            this.tbDadosRecebidos.ReadOnly = true;
+            this.tbDadosRecebidos.Size = new System.Drawing.Size(398, 116);
             this.tbDadosRecebidos.TabIndex = 7;
+            // 
+            // btLiberarEntrada
+            // 
+            this.btLiberarEntrada.Enabled = false;
+            this.btLiberarEntrada.Location = new System.Drawing.Point(78, 208);
+            this.btLiberarEntrada.Name = "btLiberarEntrada";
+            this.btLiberarEntrada.Size = new System.Drawing.Size(173, 62);
+            this.btLiberarEntrada.TabIndex = 8;
+            this.btLiberarEntrada.Text = "Liberar Entrada";
+            this.btLiberarEntrada.UseVisualStyleBackColor = true;
+            this.btLiberarEntrada.Click += new System.EventHandler(this.btLiberarEntrada_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(47, 321);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(691, 60);
+            this.label1.TabIndex = 9;
+            this.label1.Text = resources.GetString("label1.Text");
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btLiberarSaida
+            // 
+            this.btLiberarSaida.Enabled = false;
+            this.btLiberarSaida.Location = new System.Drawing.Point(317, 208);
+            this.btLiberarSaida.Name = "btLiberarSaida";
+            this.btLiberarSaida.Size = new System.Drawing.Size(173, 62);
+            this.btLiberarSaida.TabIndex = 10;
+            this.btLiberarSaida.Text = "Liberar Saída";
+            this.btLiberarSaida.UseVisualStyleBackColor = true;
+            this.btLiberarSaida.Click += new System.EventHandler(this.btLiberarSaida_Click);
+            // 
+            // btQtdEntradas
+            // 
+            this.btQtdEntradas.Enabled = false;
+            this.btQtdEntradas.Location = new System.Drawing.Point(565, 208);
+            this.btQtdEntradas.Name = "btQtdEntradas";
+            this.btQtdEntradas.Size = new System.Drawing.Size(173, 62);
+            this.btQtdEntradas.TabIndex = 11;
+            this.btQtdEntradas.Text = "Quantidade de Entradas";
+            this.btQtdEntradas.UseVisualStyleBackColor = true;
+            this.btQtdEntradas.Click += new System.EventHandler(this.btQtdEntradas_Click);
             // 
             // frPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(821, 317);
+            this.ClientSize = new System.Drawing.Size(821, 516);
+            this.Controls.Add(this.btQtdEntradas);
+            this.Controls.Add(this.btLiberarSaida);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btLiberarEntrada);
             this.Controls.Add(this.tbDadosRecebidos);
             this.Controls.Add(this.lDadosRecebidos);
             this.Controls.Add(this.btEnviarDados);
@@ -165,6 +221,10 @@
         private System.Windows.Forms.Button btEnviarDados;
         private System.Windows.Forms.Label lDadosRecebidos;
         private System.Windows.Forms.TextBox tbDadosRecebidos;
+        private System.Windows.Forms.Button btLiberarEntrada;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btLiberarSaida;
+        private System.Windows.Forms.Button btQtdEntradas;
     }
 }
 

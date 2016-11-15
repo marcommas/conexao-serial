@@ -20,17 +20,24 @@ namespace conexao_serial
 
         private void frPrincipal_Load(object sender, EventArgs e)
         {
-            string[] ports = SerialPort.GetPortNames();
-            cbPortaCom.Sorted = true;
-            foreach (var item in ports)
+            try
             {
-                cbPortaCom.Items.Add(item);
+                string[] ports = SerialPort.GetPortNames();
+                cbPortaCom.Sorted = true;
+                foreach (var item in ports)
+                {
+                    cbPortaCom.Items.Add(item);
+                }
+                if (cbPortaCom.Items.Count > 0)
+                {
+                    cbPortaCom.SelectedIndex = 0;
+                }
             }
-            if (cbPortaCom.Items.Count > 0)
+            catch (Exception)
             {
-                cbPortaCom.SelectedIndex = 0;
+                MessageBox.Show("Aconteceu um erro!" + e);
+                throw;
             }
-
         }
 
         private void btAbrirPorta_Click(object sender, EventArgs e)
@@ -48,6 +55,9 @@ namespace conexao_serial
                 spComunica.Open();
             }
             btEnviarDados.Enabled = tbEnviaDados.Enabled = spComunica.IsOpen;
+            btLiberarEntrada.Enabled = spComunica.IsOpen;
+            btLiberarSaida.Enabled = spComunica.IsOpen;
+            btQtdEntradas.Enabled = spComunica.IsOpen;
         }
 
         private void btEnviarDados_Click(object sender, EventArgs e)
@@ -58,8 +68,44 @@ namespace conexao_serial
         private void spComunica_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             BeginInvoke((MethodInvoker)(() => {
-                tbDadosRecebidos.Text += spComunica.ReadExisting();
+                tbDadosRecebidos.Text += spComunica.ReadExisting() + "\r\n";
             }));
+        }
+
+        private void btLiberarEntrada_Click(object sender, EventArgs e)
+        {
+            //Entrada
+            //‘I’ ‘1’ ‘1’ ‘0’ ‘0’ ‘1’ ‘F’ ‘0’ ‘6’ ‘2’ ‘;’ 
+            byte[] entrada = { 73, 49, 49, 48, 48, 49, 70, 48, 54, 50, 59 };
+
+            //System.Text.ASCIIEncoding conversor = new System.Text.ASCIIEncoding();
+            //MessageBox.Show(conversor.GetString(entrada));
+
+            spComunica.Write(entrada, 0, 1);
+        }
+
+        private void btLiberarSaida_Click(object sender, EventArgs e)
+        {
+            //Saida
+                          //‘I’ ‘1’ ‘1’ ‘0’ ‘0’ ‘3’ ‘F’ ‘0’ ‘6’ ‘2’ ‘;’ 
+            byte[] saida = { 73, 49, 49, 48, 48, 51, 70, 48, 54, 50, 59 };
+
+            //System.Text.ASCIIEncoding conversor = new System.Text.ASCIIEncoding();
+            //MessageBox.Show(conversor.GetString(entrada));
+
+            spComunica.Write(saida, 0, 1);
+        }
+
+        private void btQtdEntradas_Click(object sender, EventArgs e)
+        {
+            //Qtde Entradas
+                                //I’  1’  6’  5’  1’  0’  4’  4’  5’  5’  5’  F’  0’  0’  8’  ‘;’ 
+            byte[] qtdEntrada = { 73, 49, 54, 53, 49, 48, 52, 52, 53, 53, 53, 70, 48, 48, 56, 59 };
+
+            //System.Text.ASCIIEncoding conversor = new System.Text.ASCIIEncoding();
+            //MessageBox.Show(conversor.GetString(qtdEntrada));
+
+            spComunica.Write(qtdEntrada, 0, 1);
         }
     }
 }

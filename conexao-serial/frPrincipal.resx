@@ -120,4 +120,10 @@
   <metadata name="spComunica.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Se em algum momento o campo abaixo ter sido alterado, anote qual o momento que aconteceu, 
+(após ser liberado a entrada e girado a catracado, após liberado saída e girado catraca)
+ e anote o que foi escrito naquele momento
+</value>
+  </data>
 </root>
