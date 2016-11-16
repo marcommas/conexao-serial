@@ -35,29 +35,44 @@ namespace conexao_serial
             }
             catch (Exception)
             {
-                MessageBox.Show("Aconteceu um erro!" + e);
-                throw;
+                MessageBox.Show("Erro ao carregar as portas serial!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btAbrirPorta_Click(object sender, EventArgs e)
         {
-            if (spComunica.IsOpen)
+            try
             {
-                btAbrirPorta.Text = "Abrir";
-                spComunica.Close();
+                if (spComunica.IsOpen)
+                {
+                    btAbrirPorta.Text = "Abrir";
+                    spComunica.Close();
+                }
+                else
+                {
+
+                    if (cbPortaCom.Text != "")
+                    {
+                        spComunica.PortName = cbPortaCom.Text;
+                        spComunica.BaudRate = 9600;
+                        spComunica.Open();
+                        btAbrirPorta.Text = "Fechar";
+                    }
+                    else
+                    {
+                        MessageBox.Show("É preciso selecionar uma porta", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                        
+                }
+                btEnviarDados.Enabled = tbEnviaDados.Enabled = spComunica.IsOpen;
+                btLiberarEntrada.Enabled = spComunica.IsOpen;
+                btLiberarSaida.Enabled = spComunica.IsOpen;
+                btQtdEntradas.Enabled = spComunica.IsOpen;
             }
-            else
+            catch (Exception)
             {
-                btAbrirPorta.Text = "Fechar";
-                spComunica.PortName = cbPortaCom.Text;
-                spComunica.BaudRate = 9600;
-                spComunica.Open();
+                MessageBox.Show("Erro ao conectar com a porta serial!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            btEnviarDados.Enabled = tbEnviaDados.Enabled = spComunica.IsOpen;
-            btLiberarEntrada.Enabled = spComunica.IsOpen;
-            btLiberarSaida.Enabled = spComunica.IsOpen;
-            btQtdEntradas.Enabled = spComunica.IsOpen;
         }
 
         private void btEnviarDados_Click(object sender, EventArgs e)
@@ -80,8 +95,16 @@ namespace conexao_serial
 
             //System.Text.ASCIIEncoding conversor = new System.Text.ASCIIEncoding();
             //MessageBox.Show(conversor.GetString(entrada));
+            try
+            {
+                spComunica.Write(entrada, 0, 1);
 
-            spComunica.Write(entrada, 0, 1);
+                MessageBox.Show("Ação para liberar entrada enviado!");
+            }
+            catch
+            {
+                MessageBox.Show("Não enviou a solicitação para liberar a entrada!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btLiberarSaida_Click(object sender, EventArgs e)
@@ -92,8 +115,16 @@ namespace conexao_serial
 
             //System.Text.ASCIIEncoding conversor = new System.Text.ASCIIEncoding();
             //MessageBox.Show(conversor.GetString(entrada));
+            try
+            {
+                spComunica.Write(saida, 0, 1);
 
-            spComunica.Write(saida, 0, 1);
+                MessageBox.Show("Ação para liberar saída enviado!");
+            }
+            catch
+            {
+                MessageBox.Show("Não enviou a solicitação para liberar a saída!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btQtdEntradas_Click(object sender, EventArgs e)
@@ -104,8 +135,16 @@ namespace conexao_serial
 
             //System.Text.ASCIIEncoding conversor = new System.Text.ASCIIEncoding();
             //MessageBox.Show(conversor.GetString(qtdEntrada));
+            try
+            {
+                spComunica.Write(qtdEntrada, 0, 1);
 
-            spComunica.Write(qtdEntrada, 0, 1);
+                MessageBox.Show("Ação para buscar quantidade de entradas enviados!");
+            }
+            catch
+            {
+                MessageBox.Show("Não enviou a solicitação de quantidade de entradas!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
