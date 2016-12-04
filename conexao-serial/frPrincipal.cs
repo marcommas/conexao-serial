@@ -68,6 +68,7 @@ namespace conexao_serial
                 btLiberarEntrada.Enabled = spComunica.IsOpen;
                 btLiberarSaida.Enabled = spComunica.IsOpen;
                 btQtdEntradas.Enabled = spComunica.IsOpen;
+
             }
             catch (Exception)
             {
@@ -97,8 +98,8 @@ namespace conexao_serial
             //MessageBox.Show(conversor.GetString(entrada));
             try
             {
-                spComunica.Write(entrada, 0, 1);
-
+                spComunica.Write(entrada, 0, entrada.Length);
+                
                 MessageBox.Show("Ação para liberar entrada enviado!");
             }
             catch
@@ -117,7 +118,7 @@ namespace conexao_serial
             //MessageBox.Show(conversor.GetString(entrada));
             try
             {
-                spComunica.Write(saida, 0, 1);
+                spComunica.Write(saida, 0, saida.Length);
 
                 MessageBox.Show("Ação para liberar saída enviado!");
             }
@@ -137,7 +138,7 @@ namespace conexao_serial
             //MessageBox.Show(conversor.GetString(qtdEntrada));
             try
             {
-                spComunica.Write(qtdEntrada, 0, 1);
+                spComunica.Write(qtdEntrada, 0, qtdEntrada.Length);
 
                 MessageBox.Show("Ação para buscar quantidade de entradas enviados!");
             }
@@ -146,5 +147,7 @@ namespace conexao_serial
                 MessageBox.Show("Não enviou a solicitação de quantidade de entradas!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

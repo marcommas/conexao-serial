@@ -6,3 +6,4 @@ C:\Users\Marco\Documents\Visual Studio 2012\Projects\conexao-serial\ConexaoSeria
 C:\Users\Marco\Documents\Visual Studio 2012\Projects\conexao-serial\ConexaoSerial\conexao-serial\obj\Release\conexao-serial.csproj.GenerateResource.Cache
 C:\Users\Marco\Documents\Visual Studio 2012\Projects\conexao-serial\ConexaoSerial\conexao-serial\obj\Release\conexao-serial.exe
 C:\Users\Marco\Documents\Visual Studio 2012\Projects\conexao-serial\ConexaoSerial\conexao-serial\obj\Release\conexao-serial.pdb
+C:\Users\Marco\Documents\Visual Studio 2012\Projects\conexao-serial\ConexaoSerial\conexao-serial\obj\Release\conexao-serial.csprojResolveAssemblyReference.cache
